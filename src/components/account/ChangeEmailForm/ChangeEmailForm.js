@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View } from "react-native";
 import { styles } from "./ChangeEmailForm.style";
 import { Input, Button } from "react-native-elements";
@@ -8,43 +8,35 @@ import {
   updateEmail,
   EmailAuthProvider,
   reauthenticateWithCredential,
-  sendEmailVerification,
 } from "firebase/auth";
 import Toast from "react-native-toast-message";
 import { initialValues, validationSchema } from "./ChangeEmailForm.data";
 
-
 export function ChangeEmailForm(props) {
   const { onClose, onReload } = props;
-  const [showPassword, setShowPassword] = useState(false);
-
-  const onShowPassword = () => setShowPassword((prevState) => !prevState);
 
   const formik = useFormik({
-    
     initialValues: initialValues(),
     validationSchema: validationSchema(),
     validateOnChange: false,
     onSubmit: async (formValue) => {
-      
       try {
         const currentUser = getAuth().currentUser;
+        if (!currentUser) {
+          throw new Error("Usuario no autenticado.");
+        }
 
         const credentials = EmailAuthProvider.credential(
           currentUser.email,
           formValue.password
         );
-        reauthenticateWithCredential(currentUser, credentials);
-
+        await reauthenticateWithCredential(currentUser, credentials);
         await updateEmail(currentUser, formValue.email);
-
-        await sendEmailVerification(currentUser);
 
         onReload();
         onClose();
-
       } catch (error) {
-        console.log(error);
+        console.error(error);
         Toast.show({
           type: "error",
           position: "top",
@@ -59,21 +51,25 @@ export function ChangeEmailForm(props) {
       <Input
         placeholder="Nuevo email"
         containerStyle={styles.input}
-        onChangeText={(text) => formik.setFieldValue("email", text)}
+        onChangeText={formik.handleChange("email")}
         errorMessage={formik.errors.email}
+        value={formik.values.email}
       />
       <Input
         placeholder="Contraseña"
         containerStyle={styles.input}
-        secureTextEntry={showPassword ? false : true}
+        secureTextEntry={!formik.values.showPassword}
         rightIcon={{
           type: "material-community",
-          name: showPassword ? "eye-off-outline" : "eye-outline",
+          name: formik.values.showPassword
+            ? "eye-off-outline"
+            : "eye-outline",
           color: "#c2c2c2",
-          onPress: onShowPassword,
+          onPress: () => formik.setFieldValue("showPassword", !formik.values.showPassword),
         }}
-        onChangeText={(text) => formik.setFieldValue("password", text)}
+        onChangeText={formik.handleChange("password")}
         errorMessage={formik.errors.password}
+        value={formik.values.password}
       />
       <Button
         title="Cambiar email"

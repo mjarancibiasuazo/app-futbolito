@@ -1,61 +1,76 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useState } from "react";
+import { View } from "react-native";
 import { Avatar, Text } from "react-native-elements";
-import { getAuth } from "firebase/auth";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
-import * as ImagePicker from "expo-image-picker"; 
-import { styles } from "./InfoUser.styles"
+import * as ImagePicker from "expo-image-picker";
+import { getAuth, updateProfile  } from "firebase/auth";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { styles } from "./InfoUser.styles";
+
+export function InfoUser(props) {
+
+  const { setLoading, setLoadingText } = props;
+  const { uid, photoURL, displayName, email } = getAuth().currentUser;
+  const [avatar, setAvatar] = useState(photoURL);
 
 
-export function InfoUser() {
 
-    const { uid, photoURL, displayName, email } = getAuth().currentUser
- 
-    const changeAvatar = async () => {
-        const result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            //allowsEditing: true,
-            aspect: [4, 3],
-        });
+  const changeAvatar = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      aspect: [4, 3],
+    });
 
-        // if( !result.canceled ) uploadImage( result.uri );
-        
-    };
+    if(!result.canceled) uploadImage(result.uri);
+  };
 
-    /*  const uploadImage = async (uri) => {
-     
-      const response = await fetch(uri);
-      const blob = await response.blob();
-  
-      const storage = getStorage();
-      const storageRef = ref(storage, `images/${uid}/${new Date().getTime()}`);
-  
-      try {
-        await uploadBytes(storageRef, blob);
-        const downloadURL = await getDownloadURL(storageRef);
-        console.log('URL de descarga:', downloadURL);
-      } catch (error) {
-        console.error('Error al subir la imagen:', error);
-      }
-    };  */
+  const uploadImage = async ( uri ) => {
+    setLoadingText("Actualizando Avatar");
+    setLoading(true);
+
+    const response = await fetch( uri );
+    const blob  = await response.blob();
+
+    const storage = getStorage();
+    const storageRef = ref(storage, `avatar/${uid}`);
+    
+
+
+    uploadBytes(storageRef, blob).then((snapshot) => {
+      updatePhotoUrl( snapshot.metadata.fullPath )
+    });
+  };
+
+  const updatePhotoUrl = async ( imagePath ) => {
+    const storage = getStorage();
+    const imageRef = ref(storage, imagePath);
+
+    const imageUrl = await getDownloadURL(imageRef);
+
+    const auth = getAuth();
+    updateProfile(auth.currentUser, { photoURL: imageUrl })
+
+    setAvatar( imageUrl )
+    setLoading( false );
+  };
+
 
 
   return (
-    <View style={ styles.content }>
-      <Avatar 
-      size="large"
-      rounded
-      containerStyle={ styles.avatar }
-      icon={{ type: "material-community", name: "account" }}
-      //source={ { uri: photoURL }}
+    <View style={styles.content}>
+      <Avatar
+        size="large"
+        rounded
+        containerStyle={styles.avatar}
+        icon={{ type: "material", name: "person" }}
+        source={{ uri: avatar }}
       >
-        <Avatar.Accessory size={ 24 } />
+        <Avatar.Accessory size={24} onPress={changeAvatar} />
       </Avatar>
-      
+
       <View>
-        <Text style={ styles.displayName }>{ displayName || "Anonimo" }</Text>
-        <Text>{ email }</Text>
+        <Text style={styles.displayName}>{displayName || "Anónimo"}</Text>
+        <Text>{email}</Text>
       </View>
     </View>
-  )
+  );
 }
