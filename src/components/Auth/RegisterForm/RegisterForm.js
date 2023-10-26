@@ -26,7 +26,7 @@ export function RegisterForm() {
           formValue.email, 
           formValue.password
           );
-          navigation.navigate( screen.organizar.organizar );
+          navigation.navigate( screen.account.account );
       } catch (error) {
         Toast.show({
           type: "error",

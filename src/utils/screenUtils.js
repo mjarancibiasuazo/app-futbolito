@@ -4,16 +4,18 @@ const registrarEquiposStack = {
     addRegistro:"AddRegistro"
 }
 
-const OrganizarTorneosStack = {
-    tab: "OrganizarTorneosTab",
-    organizar: "organizar",
+const accountStack = {
+    tab: "AccountTab",
+    account: "account",
     login: "login",
     register: "register"
 }
 
+
 const torneosStack = {
     tab: "TorneosTab",
-    torneos: "torneos"
+    torneo: "torneo",
+    addTorneo: "addTorneo"
 }
 
 const canchasStack = {
@@ -34,7 +36,7 @@ const resultadosPartidostack = {
 
 export const screen = {
     registrar: registrarEquiposStack,
-    organizar: OrganizarTorneosStack,
+    account: accountStack,
     torneos: torneosStack,
     canchas: canchasStack,
     partidos: partidosStack,

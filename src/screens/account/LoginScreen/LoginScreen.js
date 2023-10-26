@@ -12,7 +12,7 @@ export function LoginScreen() {
   const navigation = useNavigation();
   
   const goToRegister = () => {
-    navigation.navigate( screen.organizar.register);
+    navigation.navigate( screen.account.register);
   }
 
 

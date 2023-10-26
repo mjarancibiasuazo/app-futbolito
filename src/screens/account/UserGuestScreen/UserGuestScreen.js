@@ -10,7 +10,7 @@ export function UserGuestScreen() {
   const navigation = useNavigation();
 
   const goToLogin = () => {
-    navigation.navigate(screen.organizar.login);
+    navigation.navigate(screen.account.login);
   }
   
   return (
@@ -18,7 +18,7 @@ export function UserGuestScreen() {
       <Image source={ require( "../../../../assets/img/user-guest.png")} style={ styles.image } />
 
 
-      <Text style={ styles.title }>Consultar tu perfi de Futbolito</Text>
+      <Text style={ styles.title }>Para organizar un torneo debes estar logueado</Text>
       
         <Button title="Ver tu Perfil" onPress={ goToLogin } buttonStyle={ styles.buttonStyle }/>
       

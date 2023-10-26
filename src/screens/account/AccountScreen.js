@@ -4,7 +4,7 @@ import { UserGuestScreen } from "./UserGuestScreen/UserGuestScreen";
 import { UserLoggedScreen } from './UserLoggedScreen';
 import { LoadingModal } from "../../components";
 
-export function OrganizarTorneosScreen() {
+export function AccountScreen() {
 
   const [ hasLogged, setHasLogged ] = useState(null);
 

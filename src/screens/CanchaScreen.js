@@ -5,7 +5,7 @@ import { View, Text } from 'react-native'
 export function CanchaScreen() {
   return (
     <View>
-      <Text>CanchaScreen mmmmmmmmmmmm</Text>
+      <Text>CanchaScreen holi churri</Text>
       
     </View>
   )
