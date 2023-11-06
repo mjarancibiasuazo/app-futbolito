@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { styles } from "./InfoForm.styles";
 import { Input } from "react-native-elements";
-//import DateTimePicker from '@react-native-community/datetimepicker';
-import { View } from 'react-native';
+//import DateTimePicker  from '@react-native-community/datetimepicker';
+import { View, Text } from 'react-native';
 import { MapForm } from '../MapForm';
 //import moment from 'moment';
 //import 'moment/locale/es'; 
@@ -34,6 +34,12 @@ export function InfoForm( props ) {
       }}
       onChangeText={(text) => formik.setFieldValue( "address", text) }
       errorMessage={ formik.errors.address}
+      />
+
+      <Input 
+      placeholder="Telefono"
+      onChangeText={(text) => formik.setFieldValue( "phone", text) }
+      errorMessage={ formik.errors.phone }
       />
       
       <Input 
