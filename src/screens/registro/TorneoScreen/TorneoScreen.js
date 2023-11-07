@@ -35,7 +35,7 @@ export function TorneoScreen( props ) {
       
     onSnapshot(q, (snapshot) => {
       const data = snapshot.docs.map(doc => doc.data());
-      console.log("torneos", data);
+      //console.log("torneos", data);
       setTorneos(data);
   
    });

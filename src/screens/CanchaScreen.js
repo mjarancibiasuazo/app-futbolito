@@ -5,7 +5,7 @@ import { View, Text } from 'react-native'
 export function CanchaScreen() {
   return (
     <View>
-      <Text>CanchaScreen</Text>
+      <Text>CanchaScreen bbb</Text>
       
     </View>
   )
