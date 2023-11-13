@@ -15,7 +15,8 @@ const accountStack = {
 const torneosStack = {
     tab: "TorneosTab",
     torneo: "torneo",
-    addTorneo: "addTorneo"
+    addTorneo: "addTorneo",
+    detailTorneo: "detailTorneo"
 }
 
 const canchasStack = {

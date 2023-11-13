@@ -9,13 +9,13 @@ export function ListTorneos(props) {
   
   const { torneos } = props;
 
+  const navigation = useNavigation();
+
   const goToTorneo = ( torneo ) => {
-    console.log("Ir al Torneo");
-    console.log(torneo.name);
+    navigation.navigate( screen.torneos.detailTorneo, { id: torneo.id } );
   };
 
    
-
   return (
     <FlatList
       data={ torneos }
