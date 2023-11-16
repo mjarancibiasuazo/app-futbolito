@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, View } from 'react-native';
+import { Button } from "react-native-elements";
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../utils';
 import { Carousel } from '../../../components/shared';
@@ -40,13 +41,21 @@ export function DetailTorneoScreen(props) {
             width={ 250 } 
           />   
             <Header 
-            detailTorneo={ detailTorneo } 
+              detailTorneo={ detailTorneo } 
             /> 
 
             <Info 
-            detailTorneo={ detailTorneo} 
+              detailTorneo={ detailTorneo} 
             />
-        </>
+          
+          <Button 
+            title="Registrar Equipo"
+            containerStyle={ styles.btnContainer } 
+            buttonStyle={ styles.btn }
+         
+         />
+           
+        </>  
       )}
      
     </ScrollView>
