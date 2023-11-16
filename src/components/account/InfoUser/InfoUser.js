@@ -5,6 +5,7 @@ import * as ImagePicker from "expo-image-picker";
 import { getAuth, updateProfile  } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { styles } from "./InfoUser.styles";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export function InfoUser(props) {
 
@@ -56,20 +57,32 @@ export function InfoUser(props) {
 
 
   return (
-    <View style={styles.content}>
-      <Avatar
-        size="large"
-        rounded
-        containerStyle={styles.avatar}
-        icon={{ type: "material", name: "person" }}
-        source={{ uri: avatar }}
-      >
-        <Avatar.Accessory size={24} onPress={changeAvatar} />
-      </Avatar>
+    <View style={ styles.content }>
+      <View>
+        {avatar ? (
+          <Avatar
+            size="large"
+            rounded
+            containerStyle={ styles.avatar }
+            source={{ uri: avatar }}
+          >
+            <Avatar.Accessory size={ 24 } onPress={ changeAvatar } />
+          </Avatar>
+        ) : (
+          <Avatar
+            size="large"
+            rounded
+            containerStyle={ styles.avatar }
+            icon={{ type: "material", name: "person" }}
+          >
+            <Avatar.Accessory size={24} onPress={changeAvatar} />
+          </Avatar>
+        )}
+      </View>
 
       <View>
-        <Text style={styles.displayName}>{displayName || "Anónimo"}</Text>
-        <Text>{email}</Text>
+        <Text style={ styles.displayName }>{ displayName || "Anónimo" }</Text>
+        <Text>{ email }</Text>
       </View>
     </View>
   );

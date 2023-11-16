@@ -14,8 +14,8 @@ export function MapForm( props ) {
     const { show, close, formik } = props;
 
     const [ location, setLocation ] = useState({
-      latitude: 0.001,
-      longitude: 0.001,
+      latitude: -33.5833100,
+      longitude: -70.6341900,
       latitudeDelta: 0.001,
       longitudeDelta: 0.001,
     })

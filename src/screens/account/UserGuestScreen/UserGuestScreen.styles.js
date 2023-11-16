@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     content: {
+        top: 60,
         marginHorizontal: 30,
     },
     image: {
@@ -17,6 +18,7 @@ export const styles = StyleSheet.create({
         textAlign: "center"
     },
     buttonStyle: {
+     
         backgroundColor: "#004AAD"
     }
 })

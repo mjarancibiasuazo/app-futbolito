@@ -6,7 +6,7 @@ import { styles } from "./Header.styles";
 export function Header( props ) {
 
   const { detailTorneo } = props;
-  console.log(detailTorneo);
+  console.log("Estamos en header", detailTorneo);
 
   return (
     <View style={ styles.content }>

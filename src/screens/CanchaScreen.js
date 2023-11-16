@@ -5,9 +5,7 @@ import { Header } from "../components/Torneo";
 export function CanchaScreen() {
   return (
     <View>
-      <Text>CanchaScreen bbb</Text>
-      <Header />
-      
+      <Text>CanchaScreen bbbebe jajsjs</Text>
     </View>
   )
 }

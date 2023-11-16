@@ -27,11 +27,17 @@ export function RegisterForm() {
           formValue.password
           );
           navigation.navigate( screen.account.account );
+
+        Toast.show({
+          type: "success",
+          position: "top",
+          text1: "Usuario registado con éxito",
+        });
       } catch (error) {
         Toast.show({
           type: "error",
           position: "top",
-          text1: "Error al registar, intentelo mas tarde"
+          text1: "Email registrado"
         })
         console.log(error)
       }

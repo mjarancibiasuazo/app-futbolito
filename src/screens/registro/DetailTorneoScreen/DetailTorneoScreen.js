@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, View, Dimensions } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../utils';
 import { Carousel } from '../../../components/shared';
 import { Header, Info } from '../../../components/Torneo';
-import { styles } from './DetailTorneoScreen.styles';
-//import { ScrollView } from 'react-native-web';
+import { styles } from "./DetailTorneoScreen.styles";
 
-const { width } = Dimensions.get( "window" );
+//import { ScrollView } from 'react-native-web';
+//const { width } = Dimensions.get( "window" );
 
 export function DetailTorneoScreen(props) {
   const { route } = props;
@@ -29,7 +29,7 @@ export function DetailTorneoScreen(props) {
   }, [route.params.id]);
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.content}>
       {/* Verificar si detailTorneo es null antes de acceder a sus propiedades */}
       {detailTorneo && (
         <>
