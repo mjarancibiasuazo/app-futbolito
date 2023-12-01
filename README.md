@@ -1,7 +1,3 @@
-# Project Title
-
-A brief description of what this project does and who it's for
-
 # Proyecto de Titulo Aplicación Móvil Futbolito
 
 Aplicación móvil para organizar torneos de futbolito (baby futbol) en comunidades vulnerables.
