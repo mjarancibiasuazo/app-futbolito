@@ -16,3 +16,4 @@ Aplicación móvil para organizar torneos de futbolito (baby futbol) en comunida
 El proyecto se centra en proporcionar a niños y jóvenes en comunidades vulnerables oportunidades más accesibles y rápidas para participar en actividades físicas y deportivas. Esta iniciativa tiene como objetivo mejorar significativamente su bienestar general al facilitar el acceso y la participación activa en eventos recreativos, contribuyendo así a la calidad de vida de estos grupos.
 
 #UI/UX
+https://drive.google.com/file/d/1Y18tCtLk8NuU81UA5zOES9zfdibFqHfh/view?usp=drive_link
